@@ -2,14 +2,20 @@
 
 namespace App\Repositories;
 
-class CourseRepository{
+use App\Models\Course;
 
-    protected $courseModel;
+class CourseRepository
+{
+    protected $model;
 
-    public function __construct(Course $courseModel)
+    public function __construct(Course $model)
     {
-        $this->courseModel = $courseModel;
+        $this->model = $model;
     }
 
+    public function getAll($paginate = 10)
+    {
+        return $this->model->paginate($paginate);
+    }
 
 }

@@ -3,9 +3,21 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Repositories\StudentRepository;
+use App\Repositories\CourseRepository;
+use App\Http\Requests\StudentRequest;
 
 class StudentController extends Controller
 {
+    protected $studentRepo;
+    protected $courseRepo;
+
+    public function __construct(StudentRepository $studentRepo, CourseRepository $courseRepo)
+    {
+        $this->studentRepo = $studentRepo;
+        $this->courseRepo = $courseRepo;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -13,7 +25,9 @@ class StudentController extends Controller
      */
     public function index()
     {
-        //
+        $students = $this->studentRepo->getAll();
+        return view('admin.students.index', compact('students'))
+        ->with('i', (request()->input('page', 1) - 1) * 10);
     }
 
     /**
@@ -23,7 +37,8 @@ class StudentController extends Controller
      */
     public function create()
     {
-        //
+        $courses = $this->courseRepo->getAll(9999);
+        return view('admin.students.create', compact('courses'));
     }
 
     /**
@@ -32,9 +47,15 @@ class StudentController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StudentRequest $request)
     {
-        //
+        $student = $this->studentRepo->store($request);
+
+        if (!$student) {
+            return redirect()->route('students.index')->with('error', 'Erro ao cadastrar');
+        }
+
+        return redirect()->route('students.index')->with('success', $student->name . ' cadastrado com sucesso');
     }
 
     /**
@@ -45,7 +66,8 @@ class StudentController extends Controller
      */
     public function show($id)
     {
-        //
+        $student = $this->studentRepo->find($id);
+        return view('admin.students.show', compact('student'));
     }
 
     /**
@@ -56,7 +78,9 @@ class StudentController extends Controller
      */
     public function edit($id)
     {
-        //
+        $student = $this->studentRepo->find($id);
+        $courses = $this->courseRepo->getAll(9999);
+        return view('admin.students.edit', compact('student', 'courses'));
     }
 
     /**
@@ -66,9 +90,15 @@ class StudentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(StudentRequest $request, $id)
     {
-        //
+        $student = $this->studentRepo->update($request, $id);
+
+        if (!$student) {
+            return redirect()->route('students.index')->with('error', 'Erro ao atualizar');
+        }
+
+        return redirect()->route('students.index')->with('info', $student->name . ' atualizado com sucesso');
     }
 
     /**
@@ -79,6 +109,12 @@ class StudentController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $student = $this->studentRepo->destroy($id);
+
+        if (!$student) {
+            return redirect()->route('students.index')->with('error', 'Erro ao remover');
+        }
+
+        return redirect()->route('students.index')->with('info', 'Aluno removido com sucesso');
     }
 }

@@ -29,7 +29,6 @@ class ImageService
     {
         if ($image) {
             $fileName = Str::random(10) . '_' . Carbon::now()->timestamp .  '.' . $image->getClientOriginalExtension();
-            \Log::debug($fileName);
             $destinationPath = public_path($pathToSave);
             $image->move($destinationPath, $fileName);
 

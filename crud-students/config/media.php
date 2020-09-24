@@ -1,5 +1,5 @@
 <?php
 
 return [
-    'image' => 'storage/uploads/students'
+    'image' => 'storage/uploads/students/'
 ];
