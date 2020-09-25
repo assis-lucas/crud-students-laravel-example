@@ -1,0 +1,21 @@
+
+- Utilizado PHP 7.4.8
+- Laravel 8
+
+
+
+* Configurando o projeto
+
+- Alterar de .env.example para .env
+- Colocar configuracoes de banco de dados corretamente [mysql]
+- Com banco criado, basta rodar php artisan migrate --seed
+
+
+* Rodando projeto
+
+- php artisan serve
+- Servidor de desenvolvimento estará funcionando em localhost:8000
+
+
+
+Obrigado ;)
