@@ -67,7 +67,7 @@
                         </div>
 
                         <button type="submit" class="btn btn-secondary alert-secondary"><i class="fa fa-save"></i>
-                            Salvar produto</button>
+                            Salvar aluno</button>
                     </form>
                 </div>
             </div>

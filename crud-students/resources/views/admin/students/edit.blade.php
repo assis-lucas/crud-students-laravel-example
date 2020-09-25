@@ -76,7 +76,7 @@
 
                         <button type="submit" class="btn btn-secondary alert-secondary"
                             style="display: block; margin-top: 1rem;"><i class="fa fa-save"></i>
-                            Salvar produto</button>
+                            Atualizar aluno</button>
                     </form>
                 </div>
             </div>

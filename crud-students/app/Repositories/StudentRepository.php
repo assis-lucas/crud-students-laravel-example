@@ -5,23 +5,32 @@ namespace App\Repositories;
 use App\Models\Student;
 use App\Models\Course;
 use App\Services\ImageService;
+use App\Repositories\CourseRepository;
 use Illuminate\Support\Facades\DB;
 use Excepetion;
 
 class StudentRepository
 {
     protected $model;
+    protected $courseRepo;
     protected $imageService;
 
-    public function __construct(Student $model, ImageService $imageService)
+    public function __construct(Student $model, ImageService $imageService, CourseRepository $courseRepo)
     {
         $this->model = $model;
+        $this->courseRepo = $courseRepo;
         $this->imageService = $imageService;
     }
 
-    public function getAll($paginate = 10)
+    public function getAll($paginate = false)
     {
-        return $this->model->paginate($paginate);
+        if ($paginate) {
+            $data = $this->model->paginate($paginate);
+        } else {
+            $data = $this->model->all();
+        }
+
+        return $data;
     }
 
     public function find($id)
@@ -40,7 +49,7 @@ class StudentRepository
             ]);
 
             if ($request->courses) {
-                $student->courses()->sync($this->createCourseList($request->courses));
+                $student->courses()->sync($this->courseRepo->createCourseList($request->courses));
             }
 
             DB::commit();
@@ -72,7 +81,7 @@ class StudentRepository
             }
 
             if ($request->courses) {
-                $student->courses()->sync($this->createCourseList($request->courses));
+                $student->courses()->sync($this->courseRepo->createCourseList($request->courses));
             }
 
             $student->save();
@@ -87,16 +96,4 @@ class StudentRepository
         }
     }
 
-    public function createCourseList(array $input)
-    {
-        $list = [];
-
-        foreach ($input as $course) {
-            if (Course::whereName($course)->count() > 0) {
-                $list[] = Course::whereName($course)->first()->id;
-            }
-        }
-
-        return $list;
-    }
 }

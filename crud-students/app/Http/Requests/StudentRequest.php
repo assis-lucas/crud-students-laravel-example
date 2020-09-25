@@ -25,6 +25,7 @@ class StudentRequest extends FormRequest
     {
         return [
            'name' => 'required|min:3',
+           'courses' => 'required'
         ];
     }
 }

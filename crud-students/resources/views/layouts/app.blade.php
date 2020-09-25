@@ -34,7 +34,7 @@
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    Students - Our Course S/A
+                    Gerenciamento de Alunos
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse"
                     data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
@@ -60,10 +60,10 @@
                             <a class="nav-link {{ \Request::segment(1) == 'students' ? 'active' : '' }}"
                                 href="{{ route('students.index') }}">Alunos</a>
                         </li>
-                        {{-- <li class="nav-item">
+                        <li class="nav-item">
                             <a class="nav-link {{ \Request::segment(1) == 'courses' ? 'active' : '' }}"
-                        href="{{ route('courses.index') }}">Curso</a>
-                        </li> --}}
+                                href="{{ route('courses.index') }}">Cursos</a>
+                        </li>
 
                     </ul>
                 </div>
@@ -105,4 +105,3 @@
 </body>
 
 </html>
-

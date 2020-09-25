@@ -16,8 +16,8 @@
                     <tr>
                         <td>#</td>
                         <td>Nome</td>
-                        <td>Imagem</td>
                         <td>Cursos</td>
+                        <td>Imagem</td>
                         <td>Ações</td>
                     </tr>
                 </thead>
@@ -61,3 +61,4 @@
     </div>
 </div>
 @endsection
+

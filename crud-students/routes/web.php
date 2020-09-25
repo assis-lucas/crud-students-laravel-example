@@ -13,12 +13,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('/', function () {
+    return redirect()->route('students.index');
+});
+
 $backend = __DIR__ . '/backend/*';
 
 foreach (glob($backend) as $file) {
     include $file;
 }
-
-Route::get('/', function () {
-    return redirect()->route('students.index');
-});

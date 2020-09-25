@@ -25,7 +25,7 @@ class StudentController extends Controller
      */
     public function index()
     {
-        $students = $this->studentRepo->getAll();
+        $students = $this->studentRepo->getAll(10);
         return view('admin.students.index', compact('students'))
         ->with('i', (request()->input('page', 1) - 1) * 10);
     }
@@ -37,7 +37,7 @@ class StudentController extends Controller
      */
     public function create()
     {
-        $courses = $this->courseRepo->getAll(9999);
+        $courses = $this->courseRepo->getAll();
         return view('admin.students.create', compact('courses'));
     }
 
@@ -64,7 +64,7 @@ class StudentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(int $id)
     {
         $student = $this->studentRepo->find($id);
         return view('admin.students.show', compact('student'));
@@ -76,10 +76,10 @@ class StudentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(int $id)
     {
         $student = $this->studentRepo->find($id);
-        $courses = $this->courseRepo->getAll(9999);
+        $courses = $this->courseRepo->getAll();
         return view('admin.students.edit', compact('student', 'courses'));
     }
 
@@ -107,7 +107,7 @@ class StudentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(int $id)
     {
         $student = $this->studentRepo->destroy($id);
 
