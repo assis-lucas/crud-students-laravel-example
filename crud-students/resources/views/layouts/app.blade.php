@@ -43,18 +43,7 @@
                 </button>
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <!-- Left Side Of Navbar -->
-
-                    <ul class="navbar-nav mr-auto">
-                        {{-- <a class="nav-link {{ \Request::segment(1) == 'students' ? 'active' : '' }}"
-                        href="{{ route('students.index') }}">Alunos</a> --}}
-                        {{-- <a class="nav-link {{ \Request::segment(1) == 'courses' ? 'active' : '' }}"
-                        href="{{ route('courses.index') }}">Cursos</a> --}}
-                    </ul>
-
-                    <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
-                        <!-- Authentication Links -->
 
                         <li class="nav-item">
                             <a class="nav-link {{ \Request::segment(1) == 'students' ? 'active' : '' }}"
