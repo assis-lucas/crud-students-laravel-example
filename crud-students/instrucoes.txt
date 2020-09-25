@@ -9,12 +9,12 @@
 - Alterar de .env.example para .env
 - Colocar configuracoes de banco de dados corretamente [mysql]
 - Com banco criado, basta rodar php artisan migrate --seed
-
+- Rodar php artisan key:generate
 
 * Rodando projeto
 
 - php artisan serve
-- Servidor de desenvolvimento estará funcionando em localhost:8000
+- Servidor de desenvolvimento estarï¿½ funcionando em localhost:8000
 
 
 
